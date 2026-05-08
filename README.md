@@ -11,7 +11,7 @@ Minimal cyber-style web template.
 - No frameworks
 
 ## Versions
-- V3, no audio, glow style
+- V3, similar to V4 but with a glow style
 - V4, more simple style with SoundCloud audio support
 
 ## Preview
