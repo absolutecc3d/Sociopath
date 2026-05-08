@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SOCIOPATH V4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Jersey 15', sans-serif;
+      background-color: #0b1215;
+      color: #ffffff;
+      margin: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .title {
+      font-size: 32px;
+      margin-bottom: 40px;
+
+      text-shadow: 0 0 6px rgba(255,255,255,0.6);
+
+      transform: translate(var(--ttx,0), var(--tty,0));
+      transition: transform 0.1s ease-out;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .box,
+    .bottom-button {
+      --tx: 0px;
+      --ty: 0px;
+
+      font-family: 'Jersey 15', sans-serif;
+
+      transform: translate3d(var(--tx), var(--ty), 0);
+
+      transition:
+        transform 0.1s ease-out,
+        box-shadow 0.2s ease,
+        border 0.2s ease;
+
+      background: #011222;
+      border: 2px solid rgba(255,255,255,0.2);
+
+      color: #ffffff;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      will-change: transform;
+    }
+
+    .box {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+    }
+
+    .box:hover {
+      transform: translate3d(var(--tx), var(--ty), 0) scale(1.05);
+
+      border: 2px solid rgba(255,255,255,0.6);
+
+      box-shadow:
+        0 0 12px rgba(255,255,255,0.25);
+    }
+
+    .bottom-button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      border-radius: 8px;
+    }
+
+    .bottom-button:hover {
+      transform: translate3d(var(--tx), var(--ty), 0) scale(1.03);
+
+      border: 2px solid rgba(255,255,255,0.6);
+
+      box-shadow:
+        0 0 10px rgba(255,255,255,0.25);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.65);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 999;
+      cursor: pointer;
+
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .overlay-text {
+      font-size: 28px;
+
+      text-shadow:
+        0 0 6px rgba(255,255,255,0.6);
+
+      animation: pulse 1.5s infinite;
+    }
+
+    .overlay-credit {
+      font-size: 13px;
+      opacity: 0.7;
+
+      letter-spacing: 1px;
+
+      text-shadow:
+        0 0 4px rgba(255,255,255,0.25);
+    }
+
+    .discord-icon {
+      width: 13px;
+      height: 13px;
+
+      vertical-align: middle;
+      margin-bottom: 2px;
+
+      border-radius: 50%;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.6;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AUDIO OVERLAY -->
+
+  <div class="overlay" id="overlay">
+
+    <div class="overlay-wrapper">
+
+      <div class="overlay-text">
+        CLICK TO START AUDIO
+      </div>
+
+      <div class="overlay-credit">
+        UI by YXN
+        (
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/055/331/336/non_2x/circle-discord-icon-logo-symbol-free-png.png"
+          alt="Discord"
+          class="discord-icon"
+        >
+        dcyxn
+        )
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TITLE -->
+
+  <div class="title">
+    SOCIOPATH
+  </div>
+
+  <!-- BUTTONS -->
+
+  <div class="container">
+
+    <div
+      class="box"
+      onclick="window.location.href='https://example.com'">
+
+      THIS IS
+
+    </div>
+
+    <div
+      class="box"
+      onclick="window.location.href='https://example.com'">
+
+      THE SOCIOPATH
+
+    </div>
+
+    <div
+      class="box"
+      onclick="window.location.href='https://example.com'">
+
+      V4
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BUTTON -->
+
+  <button
+    class="bottom-button"
+    onclick="window.location.href='https://example.com'">
+
+    BOTTOM BUTTON
+
+  </button>
+
+  <script>
+
+    const boxes =
+      document.querySelectorAll('.box');
+
+    const bottomButton =
+      document.querySelector('.bottom-button');
+
+    const title =
+      document.querySelector('.title');
+
+    const overlay =
+      document.getElementById('overlay');
+
+    /* OVERLAY CLICK */
+
+    overlay.addEventListener('click', () => {
+
+      overlay.style.opacity = '0';
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 300);
+
+      const iframe =
+        document.createElement('iframe');
+
+      /*
+        To use a custom song:
+        Convert your SoundCloud link using:
+        https://scembeds.vercel.app/
+
+        Enable:
+        - AutoPlay
+        - Loop
+      */
+
+      iframe.src =
+        "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/syyko/brooklyn-pop-1&auto_play=true&volume=30";
+
+      iframe.allow = "autoplay";
+
+      iframe.style.display = "none";
+
+      document.body.appendChild(iframe);
+
+    });
+
+    /* MOUSE PARALLAX */
+
+    window.addEventListener('mousemove', (e) => {
+
+      const mx = e.clientX;
+      const my = e.clientY;
+
+      [...boxes, bottomButton].forEach(el => {
+
+        const r =
+          el.getBoundingClientRect();
+
+        const cx =
+          r.left + r.width / 2;
+
+        const cy =
+          r.top + r.height / 2;
+
+        const dx =
+          (mx - cx) * 0.05;
+
+        const dy =
+          (my - cy) * 0.05;
+
+        el.style.setProperty(
+          '--tx',
+          dx + 'px'
+        );
+
+        el.style.setProperty(
+          '--ty',
+          dy + 'px'
+        );
+
+      });
+
+      const tr =
+        title.getBoundingClientRect();
+
+      const tdx =
+        (mx - (tr.left + tr.width / 2)) * 0.03;
+
+      const tdy =
+        (my - (tr.top + tr.height / 2)) * 0.03;
+
+      title.style.setProperty(
+        '--ttx',
+        tdx + 'px'
+      );
+
+      title.style.setProperty(
+        '--tty',
+        tdy + 'px'
+      );
+
+    });
+
+  </script>
+
+  <!-- INFO -->
+  <!-- Version: V4 -->
+  <!-- Made by: YXN -->
+  <!-- Discord: dcyxn / dcyxn2 -->
+  <!-- SociopathV4 is completely free, if you have paid for it you have been scammed. -->
+
+</body>
+</html>
